@@ -23,7 +23,8 @@ class pa {
 }
 
 
-const pa1 = new pa(1, 1, "01", "10", "2016", "test", "test paragraph");
+// const pa1 = new pa(1, 1, "01", "10", "2016", "test", "test paragraph");
 // console.log(pa1.dd_mm_yyyy());
-console.log(JSON.stringify(pa1));
+// console.log(JSON.stringify(pa1));
+
 export default pa;

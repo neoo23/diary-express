@@ -4,10 +4,7 @@ import fs from 'fs';
 // https://www.npmjs.com/package/xml2js ... npm i xml2js
 import xml2js from 'xml2js';
 import pa from './pa.js';
-
-const diaryFolder = 'c:/data/life/diary/xml/';
-
-
+import config from "./config.js"
 
 // golbal data / repo 
 // 
@@ -21,7 +18,7 @@ const pas = [];
  * @param {*} month 
  */
 const month2pas = function (month) {
-    fs.readFile(diaryFolder + month, (err, data) => {
+    fs.readFile(config.pas.diaryFolder + month, (err, data) => {
         if (err) {
             console.log("month " + month + " not found. " + err);
             return;
@@ -49,7 +46,8 @@ const month2pas = function (month) {
 }
 
 const initPas = function() {
-    for(var yyyy=2015; yyyy<2017; yyyy++) {
+    console.log("loading " + config.pas.repoStartYear + " - " + config.pas.repoEndYear);
+    for(var yyyy=config.pas.repoStartYear; yyyy <= config.pas.repoEndYear; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
             var month = yyyy + "-" + (mm < 10 ? "0" : "") + mm + ".xml";
             console.log("load " + month);

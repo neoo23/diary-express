@@ -1,4 +1,5 @@
 import Express from "express";
+import config from "./config.js"
 import pas from "./pas.js";
 import pa from "./pa.js";
 
@@ -6,7 +7,6 @@ import pa from "./pa.js";
 // https://www.youtube.com/watch?v=JlgKybraoy4
 
 const app = Express();
-const port = 3000;
 
 app.get("/pas-all", (req, res) => {
     res.send(JSON.stringify(pas));
@@ -22,4 +22,4 @@ app.get("/pas/:yyyy/:mm/:dd/:tag", (req, res) => {
     }))
 });
 
-app.listen(port, () => console.log("listen on port" + port));
+app.listen(config.server.port, () => console.log("listen on port" + config.server.port));
