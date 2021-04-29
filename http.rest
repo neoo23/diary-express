@@ -1,5 +1,5 @@
-GET http://localhost:3000/products
+GET http://localhost:3000/pas/2015/11/*/*
 
 ###
  
-GET http://localhost:3000/products/3
+GET http://localhost:3000/imagemeta/2015/201507/*/*

@@ -1,0 +1,13 @@
+<html>
+<head>
+<style>
+ .pm1 { padding: 1px; margin: 1px; border-radius: 12px; }
+</style>
+</head>
+
+<body bgcolor="black">
+<% images.forEach(function(img){ %>
+    <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>"/>
+<% }); %>
+</body>
+</html>

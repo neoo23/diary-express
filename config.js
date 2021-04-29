@@ -7,8 +7,8 @@ const config = {
 
     "pas" : {
         // year to start/end with building repo
-        "repoStartYear" : 2015,
-        "repoEndYear"   : 2015,
+        "repoStartYear" : 2018,
+        "repoEndYear"   : 2020,
         // path to diary xml files ...
         "diaryFolder" : "c:/data/life/diary/xml/"
     },

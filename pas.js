@@ -56,6 +56,16 @@ const initPas = function() {
     }
 }
 
+export const filterPas = function(yyyy, mm, dd, tag) {
+    return pas.filter((pa) => {
+        if ( yyyy != '*' && yyyy != pa.yyyy ) return false;
+        if ( mm != '*' && mm != pa.mm ) return false;
+        if ( dd != '*' && dd != pa.dd ) return false;
+        if ( tag != '*' && pa.tag.indexOf(tag) == -1 ) return false;
+        return true;
+    });
+}
+
 initPas();
 // diaryJson("2016-08.xml");
 

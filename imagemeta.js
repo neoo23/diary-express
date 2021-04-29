@@ -35,6 +35,22 @@ const initImages = function() {
     }
 }
 
+export const filterImages = function(yyyy_, mm_, dd_, namefilter_) {
+    var imgs = images.filter((img) => {
+        var yyyy = img.substring(0,4);
+        if ( yyyy_ != '*' && yyyy_ != yyyy ) return false;
+        var mm = img.substring(5,11);
+        if ( mm_ != '*' && mm_ != mm ) return false;
+        var dd = img.substring
+        if ( dd_ != '*' && dd_ != dd ) return false;
+        var n = img.substring(21);
+        if ( namefilter_ != '*' && n.indexOf(namefilter_) == -1 ) return false;
+        return true;
+    });
+    console.log("images: " + yyyy_ + " " + mm_ + " " + dd_ + " " + namefilter_ + " ... " + imgs.length);
+    return imgs;
+}
+
 initImages();
 
 export default images;
