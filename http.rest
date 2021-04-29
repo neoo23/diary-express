@@ -2,4 +2,8 @@ GET http://localhost:3000/pas/2015/11/*/*
 
 ###
  
-GET http://localhost:3000/imagemeta/2015/201507/*/*
+GET http://localhost:3000/json/2020/07/02/*
+
+###
+ 
+GET http://localhost:3000/imagethumbs/2020/07/02/*

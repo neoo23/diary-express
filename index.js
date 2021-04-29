@@ -1,9 +1,6 @@
 import Express from "express";
 import config from "./config.js"
-import pas from "./pas.js";
-import { filterPas, filterDays } from "./pas.js";
-import pa from "./pa.js";
-import images from "./imagemeta.js";
+import { filterPas, filterDays } from "./repo.js";
 import { filterImages } from "./imagemeta.js";
 import path from 'path';
 import processImage from 'express-processimage';
@@ -16,48 +13,30 @@ const __dirname = path.dirname(__filename);
 
 const app = Express();
 
-app.get("/pas-all", (req, res) => {
-    res.send(JSON.stringify(pas));
-});
-
-app.get("/pas-json/:yyyy/:mm/:dd/:tag", (req, res) => {
-    res.json(filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag))
-});
-
-app.get("/pas/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
+app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     var yyyymm = req.params.mm == "*" ? "*" : req.params.yyyy + req.params.mm;
-    var images_ = filterImages(req.params.yyyy, yyyymm, req.params.dd, req.params.tag);
-    var pas_ = filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
-    var days_ = filterDays(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
-    res.render("pas_" + req.params.template, {
+    var images = filterImages(req.params.yyyy, yyyymm, req.params.dd, req.params.tag);
+    var pas = filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
+    var days = filterDays(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
+    var templateData = {
         size: 350,
         params : req.params,
-        pas: pas_,
-        days: days_,
-        images: images_,
-        imageSample : function () { return images_.sample(); },
-    });
+        pas: pas,
+        days: days,
+        images: images,
+        imageSample : function () { return images.sample(); },
+    }
+    if (req.params.template == 'json') {
+        res.json(templateData);
+    }
+    else {
+        res.render(req.params.template, templateData);
+    }
 });
 
-app.get("/imagemeta/:yyyy/:mm/:dd/:namefilter", (req, res) => {
-    var imgs = filterImages(req.params.yyyy, req.params.mm, req.params.dd, req.params.namefilter);
-    // res.json(imgs.sample()); // sample() see config.js
-    res.json(imgs);
-});
-
-app.get("/imagethumbs/:yyyy/:mm/:dd/:namefilter/:size", (req, res) => {
-    res.render("imagethumbs", {
-        size: req.params.size,
-        images: filterImages(req.params.yyyy, req.params.mm, req.params.dd, req.params.namefilter)
-    });
-});
-
-app.get("/", (req, res) => {
+app.get("/hello", (req, res) => {
     res.render("index", { foo: 'bar'});
 });
-
-// bind imagefolder to images/... uri
-// app.use('/images', Express.static(config.images.imageFolder));
 
 // npm install express-processimage
 app.use(processImage({ root: config.images.imageFolder }))

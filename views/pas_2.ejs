@@ -29,7 +29,7 @@
     <div id="flexRow">
         <% if ( images != undefined && images.length > 0) { %>
             <div class="pm1" style="width: 350px">
-            <% for ( var i=0; i < pas.length; i++ ) { var img = imageSample(); %>
+            <% for ( var i=0; i < pas.length / 3; i++ ) { var img = imageSample(); %>
                 <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
             <% }; %>
             </div>
