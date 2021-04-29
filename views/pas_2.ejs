@@ -27,28 +27,19 @@
 <body>
     <h1 style="text-align: center;"><%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
     <div id="flexRow">
-        <div class="pm1" style="width: 350px">
-            <% if ( images != undefined && images.length > 0) { %>
-            <% for ( var i=0; i < pas.length; i++ ) { var img = imageSample(); %>
-                <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
-                <% }; %>
-            </div>
+        <% if ( images != undefined && images.length > 0) { %>
             <div class="pm1" style="width: 350px">
             <% for ( var i=0; i < pas.length; i++ ) { var img = imageSample(); %>
                 <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
             <% }; %>
-            <% } %>
-        </div>
+            </div>
+        <% } %>
         <div class="fbox">
             <% var i=1; pas.forEach( (pa) => { %>
-                <div style="float: left; width: 350px; margin: 6px;" *ngFor="let day of data.diarymonth.day; index as i">
-                    <div style="background-color: rgb(255, 132, 31); border-radius: 12px;">
-                        <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
-                        <div style="padding: 6px; background-color: rgb(235, 184, 143);">
-                            <span style="padding: 6px;"><%= pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
-                        </div>
-                    </div>
-                </div>
+            <div style="width: 800px; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;"
+                *ngFor="let tagtype of data.diarymonth.tags; index as i">
+                <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
+            </div>
             <% i++; }); %>
         </div>
     </div>

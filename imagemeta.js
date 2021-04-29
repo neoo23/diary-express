@@ -41,14 +41,27 @@ export const filterImages = function(yyyy_, mm_, dd_, namefilter_) {
         if ( yyyy_ != '*' && yyyy_ != yyyy ) return false;
         var mm = img.substring(5,11);
         if ( mm_ != '*' && mm_ != mm ) return false;
-        var dd = img.substring
+        var di = img.lastIndexOf("/");
+        var dd = img.substring(di+7, di+9);
         if ( dd_ != '*' && dd_ != dd ) return false;
         var n = img.substring(21);
-        if ( namefilter_ != '*' && n.indexOf(namefilter_) == -1 ) return false;
+        // if ( namefilter_ != '*' && n.indexOf(namefilter_) == -1 ) return false;
+        // any match in array
+        if ( namefilter_ != '*' && ! tags2array(namefilter_).find( (e) => { return n.indexOf(e) != -1 }) ) return false;
         return true;
     });
     console.log("images: " + yyyy_ + " " + mm_ + " " + dd_ + " " + namefilter_ + " ... " + imgs.length);
     return imgs;
+}
+
+const tags2array = function( tag ) {
+    if (tag == 'family') {
+        return ['hgw', 'hwi', 'greifswald', 'wismar', 'barth', 'bartling', 'barthling', 'volker', 'mutti', 'karin', 'gunda'];
+    }
+    if (tag == 'kiten') {
+        return ['kiten', 'kites', 'pepelow']
+    }
+    return [ tag ];
 }
 
 initImages();

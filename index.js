@@ -20,16 +20,16 @@ app.get("/pas-all", (req, res) => {
     res.send(JSON.stringify(pas));
 });
 
-app.get("/pas/:yyyy/:mm/:dd/:tag", (req, res) => {
+app.get("/pas-json/:yyyy/:mm/:dd/:tag", (req, res) => {
     res.json(filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag))
 });
 
-app.get("/pas_1/:yyyy/:mm/:dd/:tag", (req, res) => {
+app.get("/pas/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     var yyyymm = req.params.mm == "*" ? "*" : req.params.yyyy + req.params.mm;
     var images_ = filterImages(req.params.yyyy, yyyymm, req.params.dd, req.params.tag);
-    res.render("pas_1", {
+    res.render("pas_" + req.params.template, {
         size: 350,
-        imagesPerColumn : 5,
+        params : req.params,
         pas: filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag),
         images: images_,
         imageSample : function () { return images_.sample(); },
