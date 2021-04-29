@@ -14,9 +14,15 @@ const config = {
     },
 
     "images" : {
-
+        "imageFolder" : "c:/data/life/images/",
+        "imageCacheFolder" : "c:/data/life/images/_cache"
     }
 
+}
+
+// random element of array!
+Array.prototype.sample = function(){
+    return this[Math.floor(Math.random()*this.length)];
 }
 
 export default config;
