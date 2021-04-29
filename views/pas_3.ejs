@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">pas / <%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
+    <h1 style="text-align: center;">Days / <%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
     <div id="flexRow">
         <% if ( images != undefined && images.length > 0) { %>
             <div class="pm1" style="width: 350px">
@@ -35,9 +35,8 @@
             </div>
         <% } %>
         <div class="fbox">
-            <% var i=1; pas.forEach( (pa) => { %>
+            <% var i=1; days.forEach( (pa) => { %>
             <div style="width: 800px; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
-                <span style="margin: 6px; float: right;"><%= pa.tag %></span>
                 <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
             </div>
             <% i++; }); %>

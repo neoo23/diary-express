@@ -1,7 +1,7 @@
 import Express from "express";
 import config from "./config.js"
 import pas from "./pas.js";
-import { filterPas } from "./pas.js";
+import { filterPas, filterDays } from "./pas.js";
 import pa from "./pa.js";
 import images from "./imagemeta.js";
 import { filterImages } from "./imagemeta.js";
@@ -27,10 +27,13 @@ app.get("/pas-json/:yyyy/:mm/:dd/:tag", (req, res) => {
 app.get("/pas/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     var yyyymm = req.params.mm == "*" ? "*" : req.params.yyyy + req.params.mm;
     var images_ = filterImages(req.params.yyyy, yyyymm, req.params.dd, req.params.tag);
+    var pas_ = filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
+    var days_ = filterDays(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
     res.render("pas_" + req.params.template, {
         size: 350,
         params : req.params,
-        pas: filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag),
+        pas: pas_,
+        days: days_,
         images: images_,
         imageSample : function () { return images_.sample(); },
     });

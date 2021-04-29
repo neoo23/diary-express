@@ -58,7 +58,7 @@ const tags2array = function( tag ) {
     if (tag == 'family') {
         return ['hgw', 'hwi', 'greifswald', 'wismar', 'barth', 'bartling', 'barthling', 'volker', 'mutti', 'karin', 'gunda'];
     }
-    if (tag == 'kiten') {
+    if (tag == 'kiten' || tag == 'kitesession') {
         return ['kiten', 'kites', 'pepelow']
     }
     return [ tag ];

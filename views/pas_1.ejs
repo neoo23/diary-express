@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;"><%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
+    <h1 style="text-align: center;">pas / <%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
     <div id="flexRow">
         <div class="pm1" style="width: 350px">
             <% if ( images != undefined && images.length > 0) { %>
@@ -41,7 +41,7 @@
         </div>
         <div class="fbox">
             <% var i=1; pas.forEach( (pa) => { %>
-                <div style="float: left; width: 350px; margin: 6px;" *ngFor="let day of data.diarymonth.day; index as i">
+                <div style="float: left; width: 350px; margin: 6px;">
                     <div style="background-color: rgb(255, 132, 31); border-radius: 12px;">
                         <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
                         <div style="padding: 6px; background-color: rgb(235, 184, 143);">
@@ -54,6 +54,6 @@
     </div>
 
     <hr size="1"/>
-    images: <%= images.length %>, pas: <%= pas.length %>
+    images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
 </body>
 </html>
