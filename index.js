@@ -30,7 +30,7 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         res.json(templateData);
     }
     else {
-        res.render(req.params.template, templateData);
+        res.render("main", templateData);
     }
 });
 

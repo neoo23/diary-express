@@ -1,49 +1,16 @@
-<html>
-<head>
-<style>
-#flexRow {
-    display: flex;
-    flex-direction: row;
- }
-#flexCol {
-    display: flex;
-    flex-direction: column;
- }
- .fbox { padding: 1px; }
- .pm0 { padding: 0px; margin: 0px; }
- .pm1 { padding: 1px; margin: 1px; }
-
- h1 { font-family: "Georgia", Times, serif; font-weight: bold; font-size: 48px; padding: 12px; margin: 12px; }
- h2 { font-family: "Georgia", Times, serif; font-weight: bold; font-size: 18px; padding: 6px; margin: 6px; }
- h3 { font-family: "Georgia", Times, serif; font-weight: bold; font-size: 16px; padding: 4px; margin: 4px; }
-
- div.month { display: table-cell; padding: 4px; margin: 4px; font-family: "Georgia", Times, serif; font-weight: normal; }
- div.date { margin: 10px; width: 150px; background-color: orange; text-align: center; }
- div.title { font-size: 18px; font-weight: bold; }
- div.text { display: block; border: 1px solid gray; padding: 10px; margin: -1px; background-color: lightgrey;}    
-</style>
-</head>
-
-<body>
-    <h1 style="text-align: center;">days / <%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
-    <div id="flexRow">
-        <% if ( images != undefined && images.length > 0) { %>
-            <div class="pm1" style="width: 350px">
-            <% for ( var i=0; i < days.length / 3; i++ ) { var img = imageSample(); %>
-                <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
-            <% }; %>
-            </div>
-        <% } %>
-        <div class="fbox">
-            <% var i=1; days.forEach( (pa) => { %>
-            <div style="width: 800px; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
-                <h3><%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
-            </div>
-            <% i++; }); %>
+<div id="flexRow">
+    <% if ( images != undefined && images.length > 0) { %>
+        <div class="pm1" style="width: 350px">
+        <% for ( var i=0; i < days.length / 3; i++ ) { var img = imageSample(); %>
+            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
+        <% }; %>
         </div>
+    <% } %>
+    <div class="fbox">
+        <% var i=1; days.forEach( (pa) => { %>
+        <div style="width: 800px; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
+            <h3><%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
+        </div>
+        <% i++; }); %>
     </div>
-
-    <hr size="1"/>
-    images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
-</body>
-</html>
+</div>
