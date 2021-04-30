@@ -7,6 +7,9 @@ var images = [];
 
 // List all files in a directory in Node.js recursively in a synchronous fashion
 const walkSync = function (dir, filelist) {
+    if (!fs.existsSync(config.images.imageFolder + dir)) {
+        return [];
+    }
     var files = fs.readdirSync(config.images.imageFolder + dir);
     filelist = filelist || [];
     files.forEach(function (file) {

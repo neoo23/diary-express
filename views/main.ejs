@@ -22,14 +22,38 @@
  div.title { font-size: 18px; font-weight: bold; }
  div.text { display: block; border: 1px solid gray; padding: 10px; margin: -1px; background-color: lightgrey;}    
 </style>
+<script>
+    function submit() {
+        var target = "/" + template.value + "/" + yyyy.value + "/" + mm.value + "/" + dd.value + "/" + tag.value;
+        // alert(target);
+        location.href = target;
+    }
+</script>
 </head>
 
 <body>
-    <h1 style="text-align: center;"><%= params.template %> / <%= params.tag %> <%= params.dd %> <%= params.mm %> <%= params.yyyy %></h1>
+<%# ============================== navigation ======================== %>
+<%
+    for (type in urlSelects) {
+        %><select onchange="submit();" id="<%= type %>"><%
+        urlSelects[type].forEach((opt) => {
+            %><option <%= urlSelected(opt, type) %>><%= opt %></option><%
+        })
+        %></select><%
+    }
+%>
+images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
+<hr size="1"/>
 
-    <%- include(params.template); %>
+<%# ============================== headline =========================== %>
+<h1 style="text-align: center;">
+    <%= params.template %> / 
+    <%= params.tag == "*" ? '' : params.tag + ' / ' %>
+    <%= params.dd == "*" ? '' : params.dd + '.' %><%= params.mm == "*" ? '' : params.mm + '.' %><%= params.yyyy %>
+</h1>
 
-    <hr size="1"/>
-    images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
+<%# ============================== template =========================== %>
+<%- include(params.template); %>
+
 </body>
 </html>

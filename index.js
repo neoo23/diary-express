@@ -25,6 +25,14 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         days: days,
         images: images,
         imageSample : function () { return images.sample(); },
+        urlSelects : {
+            template : ['imagethumbs', 'days-list', 'pas-list', 'pas-details'],
+            tag: ['*', 'kiten', 'kitesession', 'family', 'garten'],
+            yyyy: ['*', '2021', '2020', '2019', '2018'],
+            mm: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+            dd: ['*']
+        },
+        urlSelected : function (opt, type) { return req.params[type] == opt ? "selected" : "" },
     }
     if (req.params.template == 'json') {
         res.json(templateData);
