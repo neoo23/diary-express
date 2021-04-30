@@ -1,14 +1,19 @@
 <div id="flexRow">
-    <% if ( images != undefined && images.length > 0) { %>
+    <div class="pm1" style="width: 350px">
+        <% if ( images != undefined && images.length > 0) { %>
+        <% for ( var i=0; i < days.length / 3; i++ ) { var img = imageSample(); %>
+            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
+            <% }; %>
+        </div>
         <div class="pm1" style="width: 350px">
         <% for ( var i=0; i < days.length / 3; i++ ) { var img = imageSample(); %>
             <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
         <% }; %>
-        </div>
-    <% } %>
+        <% } %>
+    </div>
     <div class="fbox">
         <% var i=1; days.forEach( (pa) => { %>
-        <div style="width: 800px; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
+        <div style="width: 100%; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
             <h3><%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
         </div>
         <% i++; }); %>

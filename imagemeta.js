@@ -38,8 +38,8 @@ const initImages = function() {
     }
 }
 
-export const filterImages = function(yyyy_, mm_, dd_, namefilter_) {
-    var imgs = images.filter((img) => {
+export const filterImages = function(yyyy_, mm_, dd_, namefilter_, images_) {
+    var imgs = (images_ == undefined ? images : images_).filter((img) => {
         var yyyy = img.substring(0,4);
         if ( yyyy_ != '*' && yyyy_ != yyyy ) return false;
         var mm = img.substring(5,11);

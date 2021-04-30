@@ -1,3 +1,10 @@
-<% for ( var i=0; i < images.length; i++ ) { var img = imageSample(); %>
-    <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>"/>
+<div id="flexRow">
+<%  var cols = query.columns == undefined ? 4 : +query.columns;
+    for( var d=1; d<=cols; d++) { %>
+    <div class="pm1" style="width: 350px">
+        <% for ( var i=0; i < images.length / cols; i++ ) { var img = imageSample(); %>
+            <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>"/>
+        <% }; %>
+    </div>
 <% }; %>
+</div>

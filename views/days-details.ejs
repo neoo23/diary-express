@@ -1,0 +1,33 @@
+<div id="flexRow">
+    <div class="pm1" style="width: 350px">
+        <% if ( images != undefined && images.length > 0) { %>
+        <% for ( var i=0; i < days.length; i++ ) { var img = imageSample(); %>
+            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
+            <% }; %>
+        </div>
+        <div class="pm1" style="width: 350px">
+        <% for ( var i=0; i < days.length; i++ ) { var img = imageSample(); %>
+            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
+        <% }; %>
+        <% } %>
+    </div>
+    <div class="fbox">
+        <% var i=1; days.forEach( (day) => { %>
+            <div style="float: left; width: 350px; margin: 6px;">
+                <div style="background-color: rgb(255, 132, 31); border-radius: 12px;">
+                    <h3><%= day.dd_mm_yyyy() %> <%= day.title %></h3>
+                    <% var j=1; day.pas.forEach( (pa) => { %>
+                        <div style="padding: 6px; background-color: rgb(235, 184, 143);">
+                            <h3><%= pa.title %></h3>
+                            <span style="padding: 6px;"><%= pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
+                        </div>
+                    <% j++; }); if (day.img != undefined && day.img != '') { %>
+                        <img src="/<%= day.img %>?resize=<%= size %>"style="border-radius: 0 0 12px 12px;" title="<%= day.img.substr(12) %>">
+                    <% } else { %>
+                        <div style="padding: 6px; background-color: rgb(235, 184, 143); border-radius: 0 0 12px 12px;"></div>
+                    <% } %>
+                </div>
+            </div>
+        <% i++; }); %>
+    </div>
+</div>

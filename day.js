@@ -7,6 +7,7 @@ class day {
         this.yyyy = yyyy;
         this.title = title;
         this.pas = pas;
+        this.img = '';
     }
 
     dd_mm_yyyy() {

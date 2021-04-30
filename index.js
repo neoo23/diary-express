@@ -18,15 +18,26 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     var images = filterImages(req.params.yyyy, yyyymm, req.params.dd, req.params.tag);
     var pas = filterPas(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
     var days = filterDays(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
+    // finde image for day
+    days.forEach( (d) => { 
+        d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_best", images).sample();
+        if (d.img == undefined || d.img == "") {
+            d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_b", images).sample();
+        }
+        if (d.img == undefined || d.img == "") {
+            d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "*", images).sample();
+        }
+    } );
     var templateData = {
         size: 350,
         params : req.params,
+        query: req.query, // in .ejs template > query.<columns>
         pas: pas,
         days: days,
         images: images,
         imageSample : function () { return images.sample(); },
         urlSelects : {
-            template : ['imagethumbs', 'days-list', 'pas-list', 'pas-details'],
+            template : ['imagethumbs', 'days-list', 'days-details', 'pas-list', 'pas-details'],
             tag: ['*', 'kiten', 'kitesession', 'family', 'garten'],
             yyyy: ['*', '2021', '2020', '2019', '2018'],
             mm: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
@@ -35,9 +46,11 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         urlSelected : function (opt, type) { return req.params[type] == opt ? "selected" : "" },
     }
     if (req.params.template == 'json') {
+        // for json data check ... http.rest
         res.json(templateData);
     }
     else {
+        // forward to main.ejs where params.template is included
         res.render("main", templateData);
     }
 });
