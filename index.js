@@ -28,10 +28,14 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
             d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "*", images).sample();
         }
     } );
+    // queryUri
+    var queryUri = ""; 
+    for ( var p in req.query ) { queryUri += ((queryUri.length < 1  ? '?' : '&') + p + "=" + req.query[p]) };
     var templateData = {
         size: 350,
         params : req.params,
         query: req.query, // in .ejs template > query.<columns>
+        queryUri : queryUri,
         pas: pas,
         days: days,
         images: images,

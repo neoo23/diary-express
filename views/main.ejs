@@ -24,7 +24,7 @@
 </style>
 <script>
     function submit() {
-        var target = "/" + template.value + "/" + yyyy.value + "/" + mm.value + "/" + dd.value + "/" + tag.value;
+        var target = "/" + template.value + "/" + yyyy.value + "/" + mm.value + "/" + dd.value + "/" + tag.value + "<%- queryUri %>";
         // alert(target);
         location.href = target;
     }
@@ -43,6 +43,7 @@
     }
 %>
 images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
+<span style="float: right">params: <span id="params">-</span></span>
 <hr size="1"/>
 
 <%# ============================== headline =========================== %>
