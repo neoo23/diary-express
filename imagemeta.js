@@ -62,7 +62,7 @@ const tags2array = function( tag ) {
         return ['hgw', 'hwi', 'greifswald', 'wismar', 'barth', 'bartling', 'barthling', 'volker', 'mutti', 'karin', 'gunda'];
     }
     if (tag == 'kiten' || tag == 'kitesession') {
-        return ['kiten', 'kites', 'pepelow']
+        return ['kiten', 'kites']
     }
     return [ tag ];
 }

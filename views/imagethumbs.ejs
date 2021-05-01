@@ -5,7 +5,7 @@
     for( var d=1; d<=cols; d++) { %>
     <div class="pm1" style="width: 350px">
         <% for ( var i=0; i < imgs; i++ ) { var img = imageSample(); %>
-            <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>"/>
+            <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>" onclick="this.style.display='none';"/>
         <% }; %>
     </div>
 <% }; %>
