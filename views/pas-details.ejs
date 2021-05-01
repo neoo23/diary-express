@@ -1,23 +1,20 @@
 <div id="flexRow">
-    <!-- col 1 -->
-    <div class="pm1" style="width: 350px">
-        <% if ( images != undefined && images.length > 0) { %>
-        <% for ( var i=0; i < pas.length / 3; i++ ) { var img = imageSample(); %>
-            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
-        <% }; %>
-    </div>
- 
-    <!-- col 2-->
-    <div class="pm1" style="width: 350px">
-        <% for ( var i=0; i < pas.length / 3; i++ ) { var img = imageSample(); %>
-            <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
-        <% }; %>
-        <% } %>
-    </div>
-
-    <!-- col 3 ... cols -->
+    <!-- cols images -->
     <% 
-        var cols = query.columns == undefined ? 2 : +query.columns;
+        var icols = query.icols == undefined ? 2 : +query.icols;
+        for( var d=1; d<=icols; d++) { %>
+            <div class="pm1" style="width: 350px">
+                <% if ( images != undefined && images.length > 0) { %>
+                <% for ( var i=0; i < days.length   ; i++ ) { var img = imageSample(); %>
+                    <img class="pm1" style="border-radius: 12px;" src="/<%= img %>?resize=<%= size %>" title="<%= img.substr(12) %>">
+                <% }; %>
+            </div>
+        <% } %>
+    <% } %>
+
+    <!-- cols text, days -->
+    <% 
+        var cols = query.cols == undefined ? 2 : +query.cols;
         for( var d=1; d<=cols; d++) { %>
         <div class="pm1" style="width: 350px">
             <% for ( var i=d; i < pas.length; i+=cols ) { var pa = pas[i-1]; %>
@@ -34,4 +31,4 @@
         </div>
     <% }; %>
 </div>
-<script>document.getElementById('params').textContent = 'columns(2)';</script>
+<script>setQuery('?icols=2&cols=2');</script>

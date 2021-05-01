@@ -1,14 +1,14 @@
 <div id="flexRow">
 <% 
-    var cols = query.columns == undefined ? 4 : +query.columns;
-    var imagesCount = query.imagesCount == undefined ? 12 : query.imagesCount;
+    var cols = query.icols == undefined ? 3 : +query.icols;
+    var imgs = query.imgs == undefined ? 4 : query.imgs;
     for( var d=1; d<=cols; d++) { %>
     <div class="pm1" style="width: 350px">
-        <% for ( var i=0; i < imagesCount / cols; i++ ) { var img = imageSample(); %>
+        <% for ( var i=0; i < imgs; i++ ) { var img = imageSample(); %>
             <img class="pm1" src="/<%= img %>?resize=<%= size %>" title="<%= img %>"/>
         <% }; %>
     </div>
 <% }; %>
 </div>
 
-<script>document.getElementById('params').textContent = 'columns(4), imagesCount(12)';</script>
+<script>setQuery('?icols=3&imgs=4');</script>

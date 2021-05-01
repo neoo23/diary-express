@@ -29,6 +29,10 @@
         // alert(target);
         location.href = target;
     }
+    function setQuery(q) {
+        document.getElementById('a1').href = q
+        document.getElementById('a2').textContent = q
+    }
 </script>
 </head>
 
@@ -44,7 +48,7 @@
     }
 %>
 images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
-<span style="float: right">params: <span id="params">-</span></span>
+<span style="float: right">params: <a id="a1" href=""><span id="a2">-</span></a></span>
 <hr size="1"/>
 
 <%# ============================== headline =========================== %>
