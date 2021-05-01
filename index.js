@@ -31,6 +31,7 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     // queryUri
     var queryUri = ""; 
     for ( var p in req.query ) { queryUri += ((queryUri.length < 1  ? '?' : '&') + p + "=" + req.query[p]) };
+    // template data {}
     var templateData = {
         size: 350,
         params : req.params,
@@ -42,13 +43,14 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         imageSample : function () { return images.sample(); },
         urlSelects : {
             template : ['imagethumbs', 'days-list', 'days-details', 'pas-list', 'pas-details'],
-            tag: ['*', 'kiten', 'kitesession', 'family', 'garten'],
-            yyyy: ['*', '2021', '2020', '2019', '2018'],
+            tag: ['*', 'kiten', 'kitesession', 'family', 'garten', '_b', '_best'],
+            yyyy: ['*', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010'],
             mm: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
             dd: ['*']
         },
         urlSelected : function (opt, type) { return req.params[type] == opt ? "selected" : "" },
     }
+    // processing: render or json output
     if (req.params.template == 'json') {
         // for json data check ... http.rest
         res.json(templateData);
