@@ -4,9 +4,22 @@
 
     <!-- cols text, days -->
     <div class="pm1" style="width: 700px">
-        <% var i=1; days.forEach( (pa) => { %>
+        <% var i=1; days.forEach( (day) => { %>
         <div style="width: 100%; background-color: rgb(54, 184, 216); border-radius: 12px; margin: 6px; float: left;">
-            <h3><%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
+            <h3 onclick="var e = document.getElementById('t<%= i %>'); var n = e.style.display == 'none'; e.style.display= n ? 'block' : 'none';"><%= day.dd_mm_yyyy() %> <%= day.title %></h3>
+            <div id="t<%= i %>" style="display: none;">
+            <% var j=1; day.pas.forEach( (pa) => { 
+                var kitesessionTagAndDaysDetailsTemplate = pa.tag != undefined && pa.tag == "kitesession" && params.template == "days-details";
+                %>
+                <div style="padding: 12px; background-color: rgb(235, 184, 143);">
+                    <h3><%= pa.title %></h3>
+                    <% if ( ! kitesessionTagAndDaysDetailsTemplate ) { %>
+                        <span><%= pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
+                    <% } %>
+                </div>
+            <% j++; }); %>
+            <div style="padding: 12px; background-color: rgb(235, 184, 143); border-radius: 0 0 12px 12px;"></div>
+            </div>
         </div>
         <% i++; }); %>
     </div>

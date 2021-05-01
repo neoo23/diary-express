@@ -7,7 +7,7 @@
         var cols = query.cols == undefined ? 2 : +query.cols;
         for( var d=1; d<=cols; d++) { %>
         <div class="pm1" style="width: 350px">
-            <% for ( var i=d; i < pas.length; i+=cols ) { var pa = pas[i-1]; %>
+            <% for ( var i=d; i <= pas.length; i+=cols ) { var pa = pas[i-1]; %>
                 <div style="float: left; width: 350px; margin: 6px;">
                     <div style="background-color: rgb(255, 132, 31); border-radius: 12px;">
                         <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
