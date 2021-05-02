@@ -22,7 +22,7 @@ const days = [];
  *  
  * @param {*} month 
  */
-const month2repo = function (month) {
+export const month2repo = function (month) {
     fs.readFile(config.pas.diaryFolder + month, (err, data) => {
         if (err) {
             console.log("month " + month + " not found. " + err);
@@ -34,7 +34,7 @@ const month2repo = function (month) {
                 return;
             }
             var dayid = 1;
-            var mid = 1;
+            var paid = 1;
             var d = JSON.stringify(result).replace('diary-month', 'diarymonth');
             var json = JSON.parse(d);
             json.diarymonth.day.forEach( d => {
@@ -45,7 +45,7 @@ const month2repo = function (month) {
                     var title = p.$ != undefined && p.$.title != undefined ? p.$.title : '';
                     var tag   = p.$ != undefined && p.$.tag != undefined ? p.$.tag : '';
                     var text  = p._ != undefined ? p._.replace(/(?:\\[rn]|[\r\n]+)+/g, " ").trim() : '' // remove \r\n and trim
-                    var pa_ = new pa(did++, mid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, tag, title, text);
+                    var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, tag, title, text);
                     pas.push(pa_);
                     pas_.push(pa_);
                     // find text for tag="kiten" for <kiten...> element => pa 
@@ -54,19 +54,19 @@ const month2repo = function (month) {
                 if( d.kiten != undefined) {
                     var k = d.kiten[0];
                     var title_ = (k.$.title + ", " + k.$.spot + ", " + k.$.time + ", " + k.$.boards + ", " + k.$.kites + ", " + k.$.wind + ", " + k.$.fun);
-                    var pa_ = new pa(did++, mid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext);
+                    var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext);
                     pas.push(pa_);
                     pas_.push(pa_);
                 }
                 var day_ = new day(dayid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, d.$.title, pas_);
                 days.push(day_);
             });
-            console.log("loading " + month + " ... done, pa's:  (+" + (mid-1) + ") " + pas.length);
+            console.log("loading " + month + " into repo ... pas: +" + (paid-1) + "/" + pas.length + ", days: +" + (dayid-1) + "/" + days.length);
         });
     });
 }
 
-const initRepo = function() {
+export const initRepo = function() {
     console.log("loading " + config.pas.repoStartYear + " - " + config.pas.repoEndYear);
     for(var yyyy=config.pas.repoStartYear; yyyy <= config.pas.repoEndYear; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
@@ -98,4 +98,3 @@ export const filterDays = function(yyyy, mm, dd, tag) {
     });
 }
 
-initRepo();

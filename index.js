@@ -1,7 +1,7 @@
 import Express from "express";
 import config from "./config.js"
-import { filterPas, filterDays } from "./repo.js";
-import { filterImages } from "./imagemeta.js";
+import { filterPas, filterDays, initRepo } from "./repo.js";
+import images, { filterImages } from "./imagemeta.js";
 import path from 'path';
 import processImage from 'express-processimage';
 import { fileURLToPath } from 'url';
@@ -10,6 +10,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // https://www.youtube.com/watch?v=JlgKybraoy4
+
+// setup diary data ... month xml, images
+initRepo();
 
 const app = Express();
 
@@ -43,9 +46,9 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         imageSample : function () { return images.sample(); },
         urlSelects : {
             template : ['imagethumbs', 'days-list', 'days-details', 'pas-list', 'pas-details'],
-            tag: ['*', 'kiten', 'kitesession', 'mum', 'money', 'news', 'family', 'friends', 'garten', 'movie', 'dinge',
+            tag: ['*', '_b', '_best', 'kiten', 'kitesession', 'mum', 'money', 'news', 'family', 'friends', 'garten', 'movie', 'dinge',
                 'game', 'work', 'arzt', 'auto', 'sport', 'bad', 'buch', 'urlaub', 'music', 'recap', 'graffiti', 'fpv',
-                'selfimpr', 'wowa', 'bike', 'wissen', '_b', '_best'],
+                'selfimpr', 'wowa', 'bike', 'wissen', 'whg'],
             yyyy: ['*', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010'],
             mm: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
             dd: ['*']
