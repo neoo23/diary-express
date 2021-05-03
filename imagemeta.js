@@ -40,7 +40,7 @@ export const initImages = function (startYYYY, endYYYY) {
     }
 }
 
-export const filterImages = function(yyyy_, mm_, dd_, namefilter_, images_) {
+export const filterImages = function(yyyy_, mm_, dd_, tags, images_) {
     var imgs = (images_ == undefined ? images : images_).filter((img) => {
         var yyyy = img.substring(0,4);
         if ( yyyy_ != '*' && yyyy_ != yyyy ) return false;
@@ -50,16 +50,35 @@ export const filterImages = function(yyyy_, mm_, dd_, namefilter_, images_) {
         var dd = img.substring(di+7, di+9);
         if ( dd_ != '*' && dd_ != dd ) return false;
         var n = img.substring(21);
-        // if ( namefilter_ != '*' && n.indexOf(namefilter_) == -1 ) return false;
-        // any match in array
-        if ( namefilter_ != '*' && ! tags2array(namefilter_).find( (e) => { return n.indexOf(e) != -1 }) ) return false;
+        var tagsEvery = tags2arrayEvery(tags);
+        if (tagsEvery.length > 1) {
+            // every match in array
+            if ( ! tagsEvery.every( (e) => { return n.indexOf(e) != -1 }) ) return false;
+        } 
+        else {
+            // any match in array
+            if ( tags != '*' && ! tags2array(tags).find( (e) => { return n.indexOf(e) != -1 }) ) return false;
+        }
         return true;
     });
-    console.log("images: " + yyyy_ + " " + mm_ + " " + dd_ + " " + namefilter_ + " ... " + imgs.length);
+    console.log("images: " + yyyy_ + " " + mm_ + " " + dd_ + " " + tags + " ... " + imgs.length);
     return imgs;
 }
 
+
+const tags2arrayEvery = function( tag ) {
+    var r = tag.split("+");
+    if ( r.length > 1) {
+        return r;
+    }
+    return [];
+}
+
 const tags2array = function( tag ) {
+    var r = tag.split(",");
+    if ( r.length > 1) {
+        return r;
+    }
     if (tag == 'family') {
         return ['hgw', 'hwi', 'greifswald', 'wismar', 'barth', 'bartling', 'barthling', 'volker', 'mutti', 'karin', 'gunda'];
     }
