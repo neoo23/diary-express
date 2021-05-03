@@ -44,7 +44,7 @@ export const month2repo = function (month) {
                 d.body[0].p.forEach(p => {
                     var title = p.$ != undefined && p.$.title != undefined ? p.$.title : '';
                     var tag   = p.$ != undefined && p.$.tag != undefined ? p.$.tag : '';
-                    var text  = p._ != undefined ? p._.replace(/(?:\\[rn]|[\r\n]+)+/g, " ").trim() : '' // remove \r\n and trim
+                    var text  = p._ != undefined ? p._.replace(/(?:\\[rn]|[\r\n]+)+/g, " ").replace(/\/\//g, "</p>").trim() : '' // remove \r\n and trim
                     var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, tag, title, text);
                     pas.push(pa_);
                     pas_.push(pa_);

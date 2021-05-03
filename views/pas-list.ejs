@@ -9,7 +9,7 @@
             <span style="margin: 6px; float: right;"><%= pa.text == '' ? '' : '+' %> <%= pa.tag %></span>
             <h3 onclick="var e = document.getElementById('t<%= i %>'); var n = e.style.display == 'none'; e.style.display= n ? 'block' : 'none';">
                 #<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
-            <div id="t<%= i %>" style="display: none; padding: 12px; background-color: rgb(235, 184, 143); border-radius: 0 0 12px 12px;"><%= pa.text %></div>
+            <div id="t<%= i %>" style="display: none; padding: 12px; background-color: rgb(235, 184, 143); border-radius: 0 0 12px 12px;"><%- pa.text %></div>
         </div>
         <% i++; }); %>
     </div>

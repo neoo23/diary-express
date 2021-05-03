@@ -12,7 +12,7 @@
                     <div style="background-color: rgb(255, 132, 31); border-radius: 12px;">
                         <h3>#<%= (i <= 9 ? '0' : '') + i %>. <%= pa.dd_mm_yyyy() %> <%= pa.title %></h3>
                         <div style="padding: 6px; background-color: rgb(235, 184, 143);">
-                            <span style="padding: 6px;"><%= pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
+                            <span style="padding: 6px;"><%- pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
                         </div>
                     </div>
                     <div style="padding: 6px; background-color: rgb(235, 184, 143); border-radius: 0 0 12px 12px;"></div>

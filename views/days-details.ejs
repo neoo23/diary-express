@@ -17,7 +17,7 @@
                             <div style="padding: 6px; background-color: rgb(235, 184, 143);">
                                 <h3><%= pa.title %></h3>
                                 <% if ( ! kitesessionTagAndDaysDetailsTemplate ) { %>
-                                    <span style="padding: 6px;"><%= pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
+                                    <span style="padding: 6px;"><%- pa.text %><%# .split('').sort(function(){return 0.5-Math.random()}).join('') %></span>
                                 <% } %>
                             </div>
                         <% j++; }); if (day.img != undefined && day.img != '') { %>

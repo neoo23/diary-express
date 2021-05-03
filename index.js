@@ -55,9 +55,9 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
         imageSample : function () { return images.sample(); },
         urlSelects : {
             template : ['imagethumbs', 'days-list', 'days-details', 'pas-list', 'pas-details'],
-            tag: ['*', '_b', '_best', 'kiten', 'kitesession', 'mum', 'money', 'news', 'family', 'friends', 'garten', 'movie', 'dinge',
+            tag: ['*', '_b', '_best', 'kiten', 'kitesession', 'mum', 'money', 'news', 'family', 'friends', 'garten', 'movie', 'it_', 'dinge',
                 'game', 'pokern', 'work', 'arzt', 'auto', 'sport', 'bad', 'buch', 'urlaub', 'music', 'recap', 'graffiti', 'fpv',
-                'selfimpr', 'wowa', 'bike', 'wissen', 'whg'],
+                'selfimpr', 'wowa', 'bike', 'monthary', 'wissen', 'whg'],
             yyyy: ['*', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010'],
             mm: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
             dd: ['*', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
