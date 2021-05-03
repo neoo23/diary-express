@@ -66,9 +66,11 @@ export const month2repo = function (month) {
     });
 }
 
-export const initRepo = function() {
+export const initRepo = function(startYYYY, endYYYY) {
     console.log("loading " + config.pas.repoStartYear + " - " + config.pas.repoEndYear);
-    for(var yyyy=config.pas.repoStartYear; yyyy <= config.pas.repoEndYear; yyyy++) {
+    var startYYYY_ =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
+    var endYYYY_ =  endYYYY == undefined ? config.pas.repoEndYear : endYYYY;
+    for(var yyyy=startYYYY_; yyyy <= endYYYY_; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
             var month = yyyy + "-" + (mm < 10 ? "0" : "") + mm + ".xml"; // yyyy-mm.xml
             console.log("load " + month);
@@ -98,3 +100,5 @@ export const filterDays = function(yyyy, mm, dd, tag) {
     });
 }
 
+export const daysCount = function() { return days.length; }
+export const pasCount = function() { return pas.length; }

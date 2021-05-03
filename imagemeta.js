@@ -24,9 +24,11 @@ const walkSync = function (dir, filelist) {
     return filelist;
 };
 
-const initImages = function() {
-    console.log("loading images " + config.pas.repoStartYear + " - " + config.pas.repoEndYear);
-    for(var yyyy=config.pas.repoStartYear; yyyy <= config.pas.repoEndYear; yyyy++) {
+export const initImages = function (startYYYY, endYYYY) {
+    var startYYYY_ =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
+    var endYYYY_ =  endYYYY == undefined ? config.pas.repoEndYear : endYYYY;
+    console.log("loading images " + startYYYY_ + " - " + endYYYY_);
+    for(var yyyy=startYYYY_; yyyy <= endYYYY_; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
             var yyyy_yyyymm_ = yyyy + "/" + yyyy + (mm < 10 ? "0" : "") + mm + "/";
             var imgs = walkSync(yyyy_yyyymm_, []);
@@ -67,6 +69,6 @@ const tags2array = function( tag ) {
     return [ tag ];
 }
 
-initImages();
+export const imagesCount = function() { return images.length; }
 
 export default images;

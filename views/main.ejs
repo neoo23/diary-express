@@ -47,8 +47,14 @@
         %></select><%
     }
 %>
-images: <%= images.length %>, pas: <%= pas.length %>, days: <%= days.length %>
-<span style="float: right">params: <a id="a1" href=""><span id="a2">-</span></a></span>
+<%# ============================== repo status ======================= %>
+<span style="float: right">
+    zeitraum: <%= repo.startYYYY %> - <%= repo.endYYYY %>,
+    images: <%= images.length %> / <%= repo.images %>,
+    days: <%= days.length %> / <%= repo.days %>,
+    pas: <%= pas.length %> / <%= repo.pas %>,
+    params: <a id="a1" href=""><span id="a2">-</span></a>
+</span>
 <hr size="1"/>
 
 <%# ============================== headline =========================== %>
