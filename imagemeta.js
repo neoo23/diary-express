@@ -14,7 +14,12 @@ const walkSync = function (dir, filelist) {
     filelist = filelist || [];
     files.forEach(function (file) {
         if (fs.statSync(config.images.imageFolder + dir + file).isDirectory()) {
-            filelist = walkSync(dir + file + '/', filelist);
+            if (filterOutImageDir(file)) {
+                console.log("filter out dir: " + file);
+            }
+            else {
+                filelist = walkSync(dir + file + '/', filelist);
+            }
         }
         else {
             var imagePath = dir + file;
@@ -23,6 +28,12 @@ const walkSync = function (dir, filelist) {
     });
     return filelist;
 };
+
+const filterOutImageDir = function (dir) {
+    // add the image folders witch should be ignored here !!! 
+    var filter = ['20210717 [maike] shooting'];
+    return filter.includes(dir);
+}
 
 export const initImages = function (startYYYY, endYYYY) {
     var startYYYY_ =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
