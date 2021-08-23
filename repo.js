@@ -42,7 +42,7 @@ export const month2repo = function (months) {
             json.diarymonth.day.forEach( d => {
                 var did = 1;
                 var pas_ = [];
-                var kitentext = "";
+                var kitentext = [];
                 d.body[0].p.forEach(p => {
                     var title = p.$ != undefined && p.$.title != undefined ? p.$.title : '';
                     var tag   = p.$ != undefined && p.$.tag != undefined ? p.$.tag : '';
@@ -51,12 +51,15 @@ export const month2repo = function (months) {
                     pas.push(pa_);
                     pas_.push(pa_);
                     // find text for tag="kiten" for <kiten...> element => pa 
-                    kitentext = tag.indexOf("kiten") != -1 ? text : kitentext;
+                    if(tag.indexOf("kiten") != -1) {
+                        kitentext.push(text);
+                    }
                 });
+                kitentext.reverse();
                 if( d.kiten != undefined) {
                     d.kiten.forEach(k => {
-                        var title_ = (k.$.title + ", " + k.$.spot + ", " + k.$.time + ", " + k.$.boards + ", " + k.$.kites + ", " + k.$.wind + ", " + k.$.fun);
-                        var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext);
+                        var title_ = ("[" + k.$.fun + "] " + k.$.title + ", " + k.$.spot + ", " + k.$.time + ", " + k.$.boards + ", " + k.$.kites + ", " + k.$.wind);
+                        var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext.pop());
                         pas.push(pa_);
                         pas_.push(pa_);
                     });
