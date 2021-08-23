@@ -31,8 +31,11 @@ const walkSync = function (dir, filelist) {
 
 const filterOutImageDir = function (dir) {
     // add the image folders witch should be ignored here !!! 
-    var filter = ['20210717 [maike] shooting'];
-    return filter.includes(dir);
+    var filter = [
+        '20210601 [andy] sprunggelenk bruch',
+        '20210717 [maike] shooting'
+    ];
+    return filter.includes(dir) || (dir + '').indexOf('nid]') > 0; // nid - not in dairy tag
 }
 
 export const initImages = function (startYYYY, endYYYY) {

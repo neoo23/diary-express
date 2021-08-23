@@ -52,11 +52,12 @@ export const month2repo = function (month) {
                     kitentext = tag.indexOf("kiten") != -1 ? text : kitentext;
                 });
                 if( d.kiten != undefined) {
-                    var k = d.kiten[0];
-                    var title_ = (k.$.title + ", " + k.$.spot + ", " + k.$.time + ", " + k.$.boards + ", " + k.$.kites + ", " + k.$.wind + ", " + k.$.fun);
-                    var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext);
-                    pas.push(pa_);
-                    pas_.push(pa_);
+                    d.kiten.forEach(k => {
+                        var title_ = (k.$.title + ", " + k.$.spot + ", " + k.$.time + ", " + k.$.boards + ", " + k.$.kites + ", " + k.$.wind + ", " + k.$.fun);
+                        var pa_ = new pa(did++, paid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, "kitesession", title_, kitentext);
+                        pas.push(pa_);
+                        pas_.push(pa_);
+                    });
                 }
                 var day_ = new day(dayid++, d.$.d, json.diarymonth.$.m, json.diarymonth.$.y, d.$.title, pas_);
                 days.push(day_);
@@ -75,6 +76,10 @@ export const initRepo = function(startYYYY, endYYYY) {
             var month = yyyy + "-" + (mm < 10 ? "0" : "") + mm + ".xml"; // yyyy-mm.xml
             console.log("load " + month);
             month2repo(month);
+            // PROBLEM: unsorted results because, asyn processing of fs.readFile(...)
+            // TODO: convert to recursion
+            // so month2repo call month2repo again for next month until all months processed, so no sorting neccessary!
+            // here: build month[] than call month2repo(months[]), process first element, recurse with rest until empty. 
         }
     }
 }
