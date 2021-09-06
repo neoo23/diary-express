@@ -1,7 +1,6 @@
 {
-  "name": "test1",
+  "name": "diary-express",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -16,5 +15,14 @@
     "express-processimage": "^10.1.0",
     "nodemon": "^2.0.12",
     "xml2js": "^0.4.23"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neoo23/diary-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neoo23/diary-express/issues"
+  },
+  "homepage": "https://github.com/neoo23/diary-express#readme",
+  "description": ""
 }

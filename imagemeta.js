@@ -39,10 +39,8 @@ const filterOutImageDir = function (dir) {
 }
 
 export const initImages = function (startYYYY, endYYYY) {
-    var startYYYY_ =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
-    var endYYYY_ =  endYYYY == undefined ? config.pas.repoEndYear : endYYYY;
-    console.log("loading images " + startYYYY_ + " - " + endYYYY_);
-    for(var yyyy=startYYYY_; yyyy <= endYYYY_; yyyy++) {
+    console.log("loading images " + startYYYY + " - " + endYYYY);
+    for(var yyyy=startYYYY; yyyy <= endYYYY; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
             var yyyy_yyyymm_ = yyyy + "/" + yyyy + (mm < 10 ? "0" : "") + mm + "/";
             var imgs = walkSync(yyyy_yyyymm_, []);

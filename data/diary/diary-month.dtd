@@ -1,0 +1,27 @@
+<!ELEMENT diary-month ( day* ) >
+<!ELEMENT day ( kiten?, body, link* ) >
+
+<!ELEMENT body ( p+ ) >
+<!ELEMENT p ( #PCDATA ) >
+<!ATTLIST p tag CDATA #IMPLIED >
+<!ATTLIST p title CDATA #IMPLIED >
+
+<!ATTLIST diary-month y CDATA #REQUIRED >
+<!ATTLIST diary-month m CDATA #REQUIRED >
+
+<!ELEMENT kiten EMPTY >
+<!ATTLIST kiten title CDATA #REQUIRED >
+<!ATTLIST kiten spot CDATA #REQUIRED >
+<!ATTLIST kiten time CDATA #REQUIRED >
+<!ATTLIST kiten boards CDATA #REQUIRED >
+<!ATTLIST kiten kites CDATA #REQUIRED >
+<!ATTLIST kiten wind CDATA #REQUIRED >
+<!ATTLIST kiten fun CDATA #REQUIRED >
+
+<!ATTLIST day title CDATA #REQUIRED >
+<!ATTLIST day d CDATA #REQUIRED >
+
+<!ELEMENT link ( #PCDATA ) >
+<!ATTLIST link aref CDATA #REQUIRED >
+<!ATTLIST link name CDATA #REQUIRED >
+

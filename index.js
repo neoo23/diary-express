@@ -18,6 +18,8 @@ var endYYYY =  myArgs[1];
 if (startYYYY != undefined && endYYYY == undefined) {
     endYYYY = startYYYY;
 }
+startYYYY =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
+endYYYY =  endYYYY == undefined ? config.pas.repoEndYear : endYYYY;
 
 // setup diary data ... month xml, images
 initRepo(startYYYY, endYYYY);

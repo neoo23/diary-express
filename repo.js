@@ -78,11 +78,9 @@ export const month2repo = function (months) {
 }
 
 export const initRepo = function(startYYYY, endYYYY) {
-    console.log("loading " + config.pas.repoStartYear + " - " + config.pas.repoEndYear);
-    var startYYYY_ =  startYYYY == undefined ? config.pas.repoStartYear : startYYYY;
-    var endYYYY_ =  endYYYY == undefined ? config.pas.repoEndYear : endYYYY;
+    console.log("loading " + startYYYY + " - " + endYYYY);
     var months = [];
-    for(var yyyy=startYYYY_; yyyy <= endYYYY_; yyyy++) {
+    for(var yyyy=startYYYY; yyyy <= endYYYY; yyyy++) {
         for(var mm=1; mm<=12; mm++) {
             var month = yyyy + "-" + (mm < 10 ? "0" : "") + mm + ".xml"; // yyyy-mm.xml
             console.log("load " + month);

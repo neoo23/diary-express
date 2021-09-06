@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE diary-month SYSTEM "http://localhost:8080/diary/doctypes/diary-month.dtd">
+<!-- tags: mum, money, news, kiten, dinge, movie, game, family, friends, work, arzt, auto, sport, bad, buch, urlaub, garten, music, recap, graffiti, fpv, selfimpr, wowa, bike, wissen -->
+
+<diary-month y="2021" m="01">
+
+<!-- 01-->
+<day d="01" title="The day after">
+<body>
+<p tag="family" title="what a mess at silvester"></p>
+<p tag="movie" title="watched the witcher 101">
+this show starts a little confusing, lets give it a chance</p>
+</body></day>
+
+<!-- 02-->
+<day d="02" title="New work week">
+<body>
+<p tag="work" title="new week at cavana inc. - new office"></p>
+<p tag="movie" title="watched the witcher 102"/>
+</body></day>
+
+<!-- 03-->
+<day d="03" title="Got ill, damn it!">
+<body>
+<p tag="arzt" title="Got ill, damn it!"></p>
+<p tag="movie" title="watched the witcher 103-108, bing watched"/>
+</body></day>
+
+</diary-month>

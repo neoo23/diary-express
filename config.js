@@ -7,15 +7,15 @@ const config = {
 
     "pas" : {
         // year to start/end with building repo
-        "repoStartYear" : 2020,
+        "repoStartYear" : 2021,
         "repoEndYear"   : 2021,
         // path to diary xml files ...
-        "diaryFolder" : "c:/data/life/diary/xml/"
+        "diaryFolder" : "./data/diary/"
     },
 
     "images" : {
-        "imageFolder" : "c:/data/life/images/",
-        "imageCacheFolder" : "c:/data/life/images/_cache"
+        "imageFolder" : "./data/images/",
+        "imageCacheFolder" : "./data/images/_cache"
     }
 
 }
