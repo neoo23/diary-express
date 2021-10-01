@@ -34,9 +34,12 @@ app.get("/:template/:yyyy/:mm/:dd/:tag", (req, res) => {
     var days = filterDays(req.params.yyyy, req.params.mm, req.params.dd, req.params.tag);
     // finde image for day
     days.forEach( (d) => { 
-        d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_best", images).sample();
+        d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_best", images).sample();  // _best in image_name
         if (d.img == undefined || d.img == "") {
-            d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_b", images).sample();
+            d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_b", images).sample(); // _b in image_name
+        }
+        if (d.img == undefined || d.img == "") {
+            d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "_d", images).sample(); // _d in image_name
         }
         if (d.img == undefined || d.img == "") {
             d.img = filterImages(d.yyyy, d.yyyy + d.mm, d.dd, "*", images).sample();
